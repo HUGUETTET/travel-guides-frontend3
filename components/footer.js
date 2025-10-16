@@ -14,7 +14,7 @@ export function Footer() {
               Tu compañero de viajes para descubrir el mundo. Guías detalladas, consejos prácticos y experiencias
               auténticas para inspirar tu próxima aventura.
             </p>
-            <div className="flex gap-4 mt-6">
+            {/* <div className="flex gap-4 mt-6">
               <Link
                 href="https://facebook.com"
                 className="text-muted-foreground hover:text-foreground transition-colors"
@@ -43,7 +43,7 @@ export function Footer() {
               >
                 <Youtube className="h-5 w-5" />
               </Link>
-            </div>
+            </div> */}
           </div>
 
           <div>
@@ -57,11 +57,11 @@ export function Footer() {
                   Destinos
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link href="/guias" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                   Guías de Viaje
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link href="/posts" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                   Artículos
@@ -81,7 +81,7 @@ export function Footer() {
                   Nosotros
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link
                   href="/contacto"
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
@@ -96,7 +96,7 @@ export function Footer() {
                 >
                   Privacidad
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>

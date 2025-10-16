@@ -13,10 +13,10 @@ export function Header() {
   const navigation = [
     { name: "Inicio", href: "/" },
     { name: "Destinos", href: "/destinos" },
-    { name: "Guías", href: "/guias" },
+    // { name: "Guías", href: "/guias" },
     { name: "Artículos", href: "/posts" },
     { name: "Nosotros", href: "/nosotros" },
-    { name: "Contacto", href: "/contacto" },
+    // { name: "Contacto", href: "/contacto" },
   ]
 
   const handleSearch = () => {
@@ -36,6 +36,7 @@ export function Header() {
           <button
             type="button"
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-foreground"
+            style={{display: mobileMenuOpen ? 'none' : 'flex'}}
             onClick={() => setMobileMenuOpen(true)}
           >
             <span className="sr-only">Abrir menú principal</span>
@@ -65,30 +66,29 @@ export function Header() {
 
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden">
-          <div className="fixed inset-0 z-50" />
-          <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-background px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-border">
-            <div className="flex items-center justify-between">
-              <Link href="/" className="-m-1.5 p-1.5">
-                <span className="text-xl font-bold">Viajeros Sin Límites</span>
-              </Link>
+        <div 
+        className="lg:hidden" 
+        style={{zIndex: 100, position: 'fixed', width: '100%', right: 0, display: 'flex', justifyContent: 'center'}}>
+          <div className="fixed inset-0" />
+          <div className="fixed inset-y-0 right-0 w-full overflow-y-auto px-6 py-6 sm:max-w-sm ">
+            <div className="flex items-center justify-between" style={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', background: 'transparent'}}>
               <button
                 type="button"
-                className="-m-2.5 rounded-md p-2.5 text-foreground"
+                className="-m-2.5 rounded-md p-2.5 text-foreground right-0 lg:hidden"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 <span className="sr-only">Cerrar menú</span>
-                <X className="h-6 w-6" aria-hidden="true" />
+                <X className="h-6 w-6 left-0" aria-hidden="true" />
               </button>
             </div>
-            <div className="mt-6 flow-root">
-              <div className="-my-6 divide-y divide-border">
-                <div className="space-y-2 py-6">
+            <div className="mt-6 flow-root bg-background/60 backdrop-blur lg:hidden" style={{zIndex: 100, position: 'fixed', width: '100%', right: 0, display: 'flex', justifyContent: 'center'}}>
+              <div className="-my-6 divide-y lg:hidden">
+                <div className="space-y-2 py-6 lg:hidden" style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                   {navigation.map((item) => (
                     <Link
                       key={item.name}
                       href={item.href}
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-foreground hover:bg-muted"
+                      className="-mx-3 block px-3 py-2 text-sm font-medium leading-6 text-foreground hover:text-muted-foreground transition-colors"
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       {item.name}
@@ -96,7 +96,7 @@ export function Header() {
                   ))}
                   <Link
                     href="/buscar"
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-foreground hover:bg-muted"
+                    className="-mx-3 block px-3 py-2 text-sm font-medium leading-6 text-foreground hover:text-muted-foreground transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Buscar

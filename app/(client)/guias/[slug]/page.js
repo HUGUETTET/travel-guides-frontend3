@@ -83,49 +83,6 @@ export default async function GuidePage({ params }) {
         </div>
       </div>
 
-      {/* Quick Info */}
-      <div className="border-b border-border bg-muted/30">
-        <div className="mx-auto max-w-4xl px-6 py-8 lg:px-8">
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {guide.duration && (
-              <div className="flex items-center gap-3">
-                <div className="rounded-lg bg-primary/10 p-3">
-                  <Clock className="h-5 w-5 text-primary" />
-                </div>
-                <div>
-                  <p className="text-sm text-muted-foreground">Duración</p>
-                  <p className="font-semibold text-foreground">{guide.duration}</p>
-                </div>
-              </div>
-            )}
-            {guide.bestTimeToVisit && (
-              <div className="flex items-center gap-3">
-                <div className="rounded-lg bg-primary/10 p-3">
-                  <Calendar className="h-5 w-5 text-primary" />
-                </div>
-                <div>
-                  <p className="text-sm text-muted-foreground">Mejor Época</p>
-                  <p className="font-semibold text-foreground">{guide.bestTimeToVisit}</p>
-                </div>
-              </div>
-            )}
-            {guide.budget && (
-              <div className="flex items-center gap-3">
-                <div className="rounded-lg bg-primary/10 p-3">
-                  <DollarSign className="h-5 w-5 text-primary" />
-                </div>
-                <div>
-                  <p className="text-sm text-muted-foreground">Presupuesto</p>
-                  <p className="font-semibold text-foreground">
-                    {guide.budget.low} - {guide.budget.high}
-                  </p>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-
       {/* Content */}
       <div className="mx-auto max-w-4xl px-6 py-12 lg:px-8 lg:py-16">
         {/* Highlights */}

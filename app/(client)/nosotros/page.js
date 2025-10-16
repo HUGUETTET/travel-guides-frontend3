@@ -106,7 +106,7 @@ export default function AboutPage() {
       </section>
 
       {/* Mission Section */}
-      <section className="py-16 lg:py-24">
+      {/* <section className="py-16 lg:py-24">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
           <Card className="bg-primary text-primary-foreground">
             <CardContent className="p-8 lg:p-12 text-center">
@@ -118,7 +118,7 @@ export default function AboutPage() {
             </CardContent>
           </Card>
         </div>
-      </section>
+      </section> */}
 
       {/* Stats Section */}
       <section className="py-16 lg:py-24 bg-muted/30">
