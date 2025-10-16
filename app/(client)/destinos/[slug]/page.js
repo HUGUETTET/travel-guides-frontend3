@@ -1,9 +1,10 @@
-import { client } from "@/lib/sanity"
+import { client } from "@/lib/sanity.js"
 import { urlFor } from "@/lib/image-url"
 import { notFound } from "next/navigation"
 import { Card, CardContent } from "@/components/ui/card"
 import Link from "next/link"
 import { MapPin, Globe } from "lucide-react"
+import { getRoutesByDestinationId } from "@/lib/sanity.ts"
 
 async function getDestination(slug) {
   return client.fetch(
@@ -79,6 +80,7 @@ export default async function DestinoPage({ params }) {
 
   const guides = await getDestinationGuides(destination._id)
   const posts = await getDestinationPosts(destination._id)
+  const relatedRoutes = await getRoutesByDestinationId(destination._id)
 
   return (
     <main className="min-h-screen">
@@ -169,12 +171,43 @@ export default async function DestinoPage({ params }) {
           </div>
         )}
 
-        {guides.length === 0 && posts.length === 0 && (
+        {guides.length === 0 && posts.length === 0 && relatedRoutes.length === 0 && (
           <div className="text-center py-12">
             <Globe className="h-16 w-16 mx-auto text-muted-foreground mb-4" />
             <p className="text-muted-foreground">Pronto tendremos contenido disponible para este destino.</p>
           </div>
         )}
+
+        {/* Related Routes Section */}
+        {relatedRoutes.length > 0 && (
+          <div>
+            <h2 className="text-3xl font-bold text-foreground mb-8">Rutas que pasan por {destination.name}</h2>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {relatedRoutes.map((route) => (
+                <Link key={route._id} href={`/rutas/${route.slug.current}`}>
+                  <Card className="overflow-hidden h-full transition-all hover:shadow-xl">
+                    <div className="relative h-48">
+                      <img
+                        src={
+                          route.mainImage
+                            ? urlFor(route.mainImage).width(600).height(400).url()
+                            : "/placeholder.svg?height=400&width=600&query=travel+route"
+                        }
+                        alt={route.mainImage?.alt || route.title}
+                        className="h-full w-full object-cover"
+                      />
+                    </div>
+                    <CardContent className="p-6">
+                      <h3 className="text-xl font-semibold text-foreground mb-2 line-clamp-2">{route.title}</h3>
+                      <p className="text-sm text-muted-foreground line-clamp-2">{route.description}</p>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+
       </div>
     </main>
   )
